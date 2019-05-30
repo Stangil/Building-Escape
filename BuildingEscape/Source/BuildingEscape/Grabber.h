@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "PhysicsEngine/PhysicsHandleComponent.h"
@@ -16,14 +14,13 @@ class BUILDINGESCAPE_API UGrabber : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UGrabber();
-
+	// Called every frame
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
+	
 
-public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 private:
 	UPROPERTY(EditAnywhere)
 	float Reach = 100.f;
@@ -34,4 +31,10 @@ private:
 	void Grab();
 	//release what was grabbed
 	void Release();
+	// Look for attached Physics handle
+	void FindPhysicsHandleCmponent();
+	// Set up attached input component
+	void SetupInputComponent();
+	// Return hit for first physics body in reach
+	const FHitResult GetFirstPhysicsBodyInReach();
 };
