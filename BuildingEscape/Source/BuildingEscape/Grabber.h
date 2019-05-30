@@ -16,6 +16,7 @@ public:
 	UGrabber();
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	FVector GetReachLineStart();
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -32,9 +33,10 @@ private:
 	//release what was grabbed
 	void Release();
 	// Look for attached Physics handle
-	void FindPhysicsHandleCmponent();
+	void FindPhysicsHandleComponent();
 	// Set up attached input component
 	void SetupInputComponent();
+	FVector GetReachLineEnd();
 	// Return hit for first physics body in reach
 	const FHitResult GetFirstPhysicsBodyInReach();
 };
