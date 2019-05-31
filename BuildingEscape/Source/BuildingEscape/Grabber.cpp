@@ -45,7 +45,6 @@ void UGrabber::SetupInputComponent()
 
 void UGrabber::Grab()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Grab key pressed"))
 	/// Line trace and see if we reach any actors with physics body collision channel set
 	auto HitResult = GetFirstPhysicsBodyInReach();
 	auto ComponentToGrab = HitResult.GetComponent();// gets the mesh
@@ -64,7 +63,6 @@ void UGrabber::Grab()
 
 void UGrabber::Release() 
 {
-	UE_LOG(LogTemp, Warning, TEXT("Grab key released"))
 	PhysicsHandle->ReleaseComponent();
 }
 // Called every frame
@@ -83,7 +81,6 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 
 const FHitResult UGrabber::GetFirstPhysicsBodyInReach()
 {
-	GetReachLineStart();
 	/// Setup query parameters
 	FHitResult HitResult;
 	FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
@@ -108,7 +105,7 @@ FVector UGrabber::GetReachLineStart()
 		OUT PlayerViewPointRotation
 	);
 
-	return PlayerViewPointLocation + PlayerViewPointRotation.Vector() * Reach;
+	return PlayerViewPointLocation;
 }
 
 FVector UGrabber::GetReachLineEnd()
@@ -120,5 +117,5 @@ FVector UGrabber::GetReachLineEnd()
 		OUT PlayerViewPointRotation
 	);
 
-	return PlayerViewPointLocation;
+	return PlayerViewPointLocation + PlayerViewPointRotation.Vector() * Reach;
 }

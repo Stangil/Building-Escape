@@ -29,6 +29,7 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+
 private:
 	UPROPERTY(EditAnywhere)
 	float OpenAngle = -90.f;
@@ -41,7 +42,8 @@ private:
 
 	float LastDoorOpenTime;
 
-	AActor* ActorThatOpens;// Remember pawn inherits from actor
-
+	//AActor* ActorThatOpens;// Remember pawn inherits from actor
 	AActor* Owner;
+	//Returns total mass on plate
+	float GetTotalMassOfActorsOnPlate();
 };
